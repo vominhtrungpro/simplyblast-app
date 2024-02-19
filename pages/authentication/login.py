@@ -7,6 +7,7 @@ from pkg.config.config import read_config
 import shelve
 from PIL import Image, ImageTk
 from io import BytesIO
+from pages.shared.main_layout import show_main_layout
 
 
 config = read_config()
@@ -21,8 +22,8 @@ def login():
     url = auth_url + '/auth/login'
     headers = {'Content-Type': 'application/json'}
     data = {
-        "email": email,
-        "password": password
+        "email": "admin@yopmail.com",
+        "password": "Password@123"
     }
 
     response = requests.post(url, json=data, headers=headers)
@@ -43,6 +44,8 @@ def login():
             save_token_info(accessToken=access_token, refreshToken=refresh_token)
 
             messagebox.showinfo("Login", "Đăng nhập thành công!")
+            app.withdraw() 
+            show_main_layout(app,token_manager)
 
     else:
         messagebox.showerror("Lỗi", "Số điện thoại hoặc mật khẩu không đúng.")
