@@ -2,8 +2,8 @@ import tkinter as tk
 from pages.admin.tenant import create_tenant
 from pages.admin.user import create_user
 
-def create_navbar(main_window,content):
-    navbar_frame = tk.Frame(main_window,bg="#ffffff", width=400)
+def create_navbar(main_layout,content,main_window):
+    navbar_frame = tk.Frame(main_layout,bg="#ffffff", width=400)
     navbar_frame.pack_propagate(False)
     navbar_frame.pack(side=tk.LEFT, fill=tk.Y)
 
@@ -17,7 +17,7 @@ def create_navbar(main_window,content):
     tenant_button.pack(fill=tk.X)
     tenant_button.bind("<Enter>", lambda event: tenant_button.config(bg="#90EE90"))
     tenant_button.bind("<Leave>", lambda event: tenant_button.config(bg="#ffffff"))
-    tenant_button.bind("<Button-1>", lambda event: create_tenant(content))
+    tenant_button.bind("<Button-1>", lambda event: create_tenant(content,main_window,main_layout))
 
     user_button = tk.Label(navbar_frame,bg="#ffffff", text="User management", height=3)
     user_button.config(font=("Arial", 16))

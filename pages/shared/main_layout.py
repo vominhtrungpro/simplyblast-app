@@ -22,7 +22,7 @@ def show_main_layout(main_window,token_manager):
     # back_button.pack(pady=10)
 
     content = create_content(main_layout)
-    create_navbar(main_layout,content)
+    create_navbar(main_layout,content,main_window)
     
 
 def back_to_login(main_window, layout):

@@ -8,7 +8,7 @@ import shelve
 from PIL import Image, ImageTk
 from io import BytesIO
 from pages.shared.main_layout import show_main_layout
-
+from pkg.pickle.pickle import save_token_to_local_storage,load_token_from_local_storage
 
 config = read_config()
 auth_url = config.get('Url', 'api_url')
@@ -36,13 +36,9 @@ def login():
     if isSuccess == True:
         if data:
             access_token = data.get("accessToken")
-            refresh_token = data.get("refreshToken")
 
-            token_manager.set_access_token(access_token)
-            token_manager.set_refresh_token(refresh_token)
-
-            save_token_info(accessToken=access_token, refreshToken=refresh_token)
-
+            save_token_to_local_storage(access_token)
+            
             messagebox.showinfo("Login", "Đăng nhập thành công!")
             app.withdraw() 
             show_main_layout(app,token_manager)
