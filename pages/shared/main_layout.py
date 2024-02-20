@@ -21,8 +21,9 @@ def show_main_layout(main_window,token_manager):
     # back_button = tk.Button(main_layout, text="Back to Login", command=lambda: back_to_login(main_window, main_layout))
     # back_button.pack(pady=10)
 
-    create_navbar(main_layout)
-    create_content(main_layout)
+    content = create_content(main_layout)
+    create_navbar(main_layout,content)
+    
 
 def back_to_login(main_window, layout):
     layout.destroy()
