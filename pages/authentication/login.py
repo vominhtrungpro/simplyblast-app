@@ -7,7 +7,7 @@ from pkg.config.config import read_config
 import shelve
 from PIL import Image, ImageTk
 from io import BytesIO
-from pages.shared.main_layout import show_main_layout
+from pages.shared.main_layout import show_app
 from pkg.pickle.pickle import save_token_to_local_storage,load_token_from_local_storage
 
 config = read_config()
@@ -41,7 +41,7 @@ def login():
             
             messagebox.showinfo("Login", "Đăng nhập thành công!")
             app.withdraw() 
-            show_main_layout(app,token_manager)
+            show_app(app)
 
     else:
         messagebox.showerror("Lỗi", "Số điện thoại hoặc mật khẩu không đúng.")
