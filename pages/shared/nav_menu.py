@@ -24,7 +24,7 @@ def create_navbar(app,content_frame,login):
     user_button.pack(fill=tk.X)
     user_button.bind("<Enter>", lambda event: user_button.config(bg="#90EE90"))
     user_button.bind("<Leave>", lambda event: user_button.config(bg="#ffffff"))
-    user_button.bind("<Button-1>", lambda event: create_user(content_frame))
+    user_button.bind("<Button-1>", lambda event: create_user(content_frame,login,app))
 
     messagetemplate_button = tk.Label(navbar_frame,bg="#ffffff", text="Message templates", height=3)
     messagetemplate_button.config(font=("Arial", 16))

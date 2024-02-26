@@ -6,6 +6,7 @@ import requests
 import json
 import shelve
 from pkg.pickle.pickle import save_token_to_local_storage,load_token_from_local_storage
+from pages.admin.components.addtenant import open_new_tenant
 
 page_index = 1
 page_size = 5
@@ -46,6 +47,7 @@ def create_tenant(content_frame,login,app):
     inner_frame3.pack(side="top", anchor="ne")
 
     new_button = tk.Button(inner_frame3,text="New",width=10,height=2)
+    new_button.bind("<Button-1>", lambda event: open_new_tenant(app))
     new_button.pack(padx=20)
 
     inner_frame4 = tk.Frame(content_frame, width=1200, height=100)
@@ -124,8 +126,13 @@ class DataTable(tk.Frame):
                 value = row_data.get(key, "")
                 label = tk.Label(self, text=value, relief=tk.RIDGE, width=25)
                 label.grid(row=row_index, column=col_index, sticky="nsew")
-            button = tk.Button(self, text="Button", command=lambda row=row_index: self.button_click(row))
+            button = tk.Button(self, text="Edit", command=lambda row=row_index: self.button_click(row))
             button.grid(row=row_index, column=len(headings), sticky="nsew")
+            button1 = tk.Button(self, text="Top up", command=lambda row=row_index: self.button_click(row))
+            button1.grid(row=row_index, column=len(headings) + 1, sticky="nsew")
+            button2 = tk.Button(self, text="Delete", command=lambda row=row_index: self.button_click(row))
+            button2.grid(row=row_index, column=len(headings) + 2, sticky="nsew")
+
 
         for i in range(len(headings)):
             self.grid_columnconfigure(i, weight=1)
@@ -174,9 +181,10 @@ def search(page_index,page_size,sort_field_name,sort_field_status,filter_name):
     else:
         messagebox.showerror("Lỗi", "Search tenant")
     
+def back_to_login(login, app):
+    app.destroy()
+    login.deiconify()
 
-def back_to_login(main_window, dashboard):
-    dashboard.destroy()
-    main_window.deiconify()
+
     
 
